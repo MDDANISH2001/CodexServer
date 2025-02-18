@@ -10,6 +10,8 @@ export interface IKeys {
         encryptedMessage:string,
         tag: string,
     },
+    createdAt?: Date;
+    updatedAt?: Date;
 };
 
 export interface IAttachment {
