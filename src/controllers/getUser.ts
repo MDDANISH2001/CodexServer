@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import User from "../models/registerSchema";
+import User from "../models/users.model";
 
 export const getUser = async (req: Request, res: Response) => {
-  const { emails, usernames } = req.body;
+  const { emails, _id } = req.body;
 
   if (
     (!emails) &&
-    (!usernames)
+    (!_id)
   ) {
     res
       .status(400)
@@ -25,9 +25,9 @@ export const getUser = async (req: Request, res: Response) => {
       if (emails.length === 1) {
         projection += " keys";
       }
-    } else if (usernames && usernames.length > 0) {
-      query = { username: { $in: usernames } };
-      if (usernames.length === 1) {
+    } else if (_id && _id.length > 0) {
+      query = { username: { $in: _id } };
+      if (_id.length === 1) {
         projection += " keys";
       }
     }

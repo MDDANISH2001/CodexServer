@@ -11,4 +11,5 @@ export interface ICalls {
   roomId?: string;
 
   createdAt?: Date;
+  updatedAt?: Date;
 }

@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { IGroupChat, IGroupUsers, ILeftUsers } from "../types/groupChat.type";
-import { attachmentSchema, keysSchema } from "./sharedShema";
+import { keysSchema } from "./shared.model";
 
 const groupUsers = new Schema<IGroupUsers>(
   {

@@ -8,4 +8,6 @@ export interface IUser {
     keys: IKeys;
     profilePic: string;
     attachments: IAttachment[];
+    createdAt?: Date;
+    updatedAt?: Date;
 }

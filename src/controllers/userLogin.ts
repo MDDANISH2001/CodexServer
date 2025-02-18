@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User from "../models/registerSchema";
+import User from "../models/users.model";
 import { hashing } from "../utils/hashPswd";
 import jwt from "jsonwebtoken";
 
