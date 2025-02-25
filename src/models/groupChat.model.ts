@@ -14,8 +14,8 @@ const groupUsers = new Schema<IGroupUsers>(
 
 const leftUsers = new Schema<ILeftUsers>(
   {
-    userId: { type: String, required: true },
-    groupDeleted: { type: Boolean, required: true, default: false },
+    userId: { type: String },
+    groupDeleted: { type: Boolean, default: false }, //to check whether the user have deleted the group from its chats or not.
   },
   {
     timestamps: true,
