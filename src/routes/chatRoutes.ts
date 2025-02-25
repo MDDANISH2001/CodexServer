@@ -6,6 +6,7 @@ import fetchDirectChatList from '../controllers/directChatControllers/getDirectC
 import fetchDirectMessages from '../controllers/directChatControllers/getDirectMessages';
 import fetchGroupChatList from '../controllers/groupChatControllers/getGroupChatList';
 import fetchGroupMessages from '../controllers/groupChatControllers/getGroupMessages';
+import manageDirectChats from '../controllers/directChatControllers/manageDirectChats';
 // import getUserDetails from '../controllers/getUserDetails.js';
 // import getSharedChats from '../controllers/getSharedChats.js';
 // import auth from '../controllers/auth.js'
@@ -27,8 +28,9 @@ userRoutes.get('/fetchDirectMessages', fetchDirectMessages ) // to fetch the mes
 userRoutes.get('/fetchGroupChatLists', fetchGroupChatList); // to fetch the chat list of the user
 userRoutes.get('/fetchGroupMessages', fetchGroupMessages ) // to fetch the messages of the user using the chatId 
 
-//Post Routesd
-userRoutes.get('/createConversation', ) // to fetch the messages of the user using the chatId 
+//Put Routesd
+userRoutes.put('/manageDirectChats', manageDirectChats) // to fetch the messages of the user using the chatId 
+userRoutes.put('/manageGroupChats', manageDirectChats) // to fetch the messages of the user using the chatId 
 // userRoutes.post('/userdata/:userId', checkConnectedUsers);
 // userRoutes.post('/shareddata/:connectionId', addChatToDb);
 // userRoutes.get('/shareddata/:sender/:receiver', getSharedChats);
