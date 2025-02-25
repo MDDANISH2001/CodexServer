@@ -2,17 +2,12 @@ import { Request, Response } from "express";
 import User from "../models/users.model";
 
 export const getUser = async (req: Request, res: Response) => {
-  const { emails, _id } = req.body;
+  const { emails, userId } = req.body;
 
-  if (
-    (!emails) &&
-    (!_id)
-  ) {
-    res
-      .status(400)
-      .json({
-        message: "Invalid Request: UserName or email is required!",
-      });
+  if (!emails && !userId) {
+    res.status(400).json({
+      message: "Invalid Request: UserName or email is required!",
+    });
     return;
   }
 
@@ -25,9 +20,9 @@ export const getUser = async (req: Request, res: Response) => {
       if (emails.length === 1) {
         projection += " keys";
       }
-    } else if (_id && _id.length > 0) {
-      query = { username: { $in: _id } };
-      if (_id.length === 1) {
+    } else if (userId && userId.length > 0) {
+      query = { _id: { $in: userId } };
+      if (userId.length === 1) {
         projection += " keys";
       }
     }
