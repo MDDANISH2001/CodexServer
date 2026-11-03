@@ -2,7 +2,12 @@ import { Request, Response } from "express";
 import User from "../models/users.model";
 
 export const getUser = async (req: Request, res: Response) => {
-  const { emails, userId } = req.body;
+  const emails = req.query.emails
+    ? ([] as string[]).concat(req.query.emails as string | string[])
+    : undefined;
+  const userId = req.query.userId
+    ? ([] as string[]).concat(req.query.userId as string | string[])
+    : undefined;
 
   if (!emails && !userId) {
     res.status(400).json({

@@ -12,31 +12,29 @@ const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
-    return res
-      .status(401)
-      .json({ message: "No token provided, authorization denied" });
+    res.status(401).json({ message: "No token provided, authorization denied" });
+    return;
   }
 
   try {
     const decoded: any = jwt.verify(token, process.env.JWT_SECRET as string);
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded.userId);
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ message: "User not found, authorization denied" });
+      res.status(401).json({ message: "User not found, authorization denied" });
+      return;
     }
 
     req.user = user;
+    next();
   } catch (error) {
     console.error("Error during token verification:", error);
     res.status(401).json({ message: "Token is not valid" });
   }
-  next();
 };
 
 export default authMiddleware;

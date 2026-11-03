@@ -12,11 +12,11 @@ const fetchDirectChatList = async (req: Request, res: Response): Promise<void> =
 
   try {
     const directChats = await DirectChats.find({
-      sharedInfo: { $regex: userId, $options: "i" }
+      conversationId: { $regex: userId, $options: "i" }
     }, "conversationId").exec();
 
     if (!directChats || directChats.length === 0) {
-      res.status(404).json({ message: "No direct chats found for the provided userId" });
+      res.status(200).json([]);
       return;
     }
 
@@ -39,7 +39,7 @@ const fetchDirectChatList = async (req: Request, res: Response): Promise<void> =
 
     const usersWithConversations = users.map(user => ({
       ...user.toObject(),
-      conversationIds: userConversations[user._id.toString()]
+      conversationId: userConversations[user._id.toString()]
     }));
 
     res.status(200).json(usersWithConversations);

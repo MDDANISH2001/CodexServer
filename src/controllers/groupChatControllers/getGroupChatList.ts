@@ -17,11 +17,7 @@ const fetchGroupChatList = async (req: Request, res: Response): Promise<void> =>
       ]
     }, "groupName keys groupProfile _id").exec();
 
-    if (groups.length > 0) {
-      res.status(200).json(groups);
-    } else {
-      res.status(404).json({ message: "No groups found for the provided userId" });
-    }
+    res.status(200).json(groups);
   } catch (error) {
     console.error("Error during fetchGroupChatList:", error);
     res.status(500).json({ message: "Internal server error" });
